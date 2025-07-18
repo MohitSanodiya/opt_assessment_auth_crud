@@ -1,8 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Register.css';
 
 function RegisterForm() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -13,7 +16,8 @@ function RegisterForm() {
   const password = watch("password");
 
   const onSubmit = async (data) => {
-    console.log("Form Data:", data);
+    console.log("Data sending to backend:", data);
+  
     try {
       const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
@@ -26,14 +30,21 @@ function RegisterForm() {
           address: data.address
         })
       });
+  
       const result = await response.json();
-      console.log(result);
-      alert("Registration successful!");
+      console.log("Server response:", result);       // frontend console
+  
+      if (response.ok) {
+        console.log("Registration successful!");
+      } else {
+        console.log("Registration failed: " + result.message);
+      }
     } catch (error) {
-      console.error("Registration failed:", error);
-      alert("Registration failed. Please try again.");
+      console.error("Registration error:", error);
+      console.error("Something went wrong. Please try again.");
     }
   };
+  
 
   return (
     <div className="form-container">
@@ -53,7 +64,7 @@ function RegisterForm() {
           {errors.fullName && <span>{errors.fullName.message}</span>}
         </div>
 
-        {/* Mobile Number */}
+        {/* Mobile */}
         <div className="form-group">
           <label>Mobile Number</label>
           <input
@@ -72,7 +83,7 @@ function RegisterForm() {
         {/* Email */}
         <div className="form-group">
           <label>Email ID</label>
-          <input className='inp1'
+          <input
             type="email"
             {...register("email", {
               required: "Email is required",
@@ -88,7 +99,7 @@ function RegisterForm() {
         {/* Password */}
         <div className="form-group">
           <label>Password</label>
-          <input className='inp1'
+          <input
             type="password"
             {...register("password", {
               required: "Password is required",
@@ -104,7 +115,7 @@ function RegisterForm() {
         {/* Confirm Password */}
         <div className="form-group">
           <label>Confirm Password</label>
-          <input className='inp1'
+          <input
             type="password"
             {...register("confirmPassword", {
               required: "Confirm password is required",
@@ -118,7 +129,7 @@ function RegisterForm() {
         {/* Address */}
         <div className="form-group">
           <label>Address</label>
-          <textarea className='inp1'
+          <textarea
             rows={3}
             {...register("address", {
               required: "Address is required",
@@ -131,9 +142,9 @@ function RegisterForm() {
           {errors.address && <span>{errors.address.message}</span>}
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <div className="form-group">
-          <button className='btn1' type="submit">Register</button>
+          <button className="btn1" type="submit">Register</button>
         </div>
       </form>
     </div>

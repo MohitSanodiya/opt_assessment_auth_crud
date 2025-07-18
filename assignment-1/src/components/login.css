@@ -1,0 +1,124 @@
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-image: url(https://images.unsplash.com/photo-1499748926165-1085fc69e9fc?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTF8fHxlbnwwfHx8fHw%3D);
+    background-size: cover;
+    /* background-clip:border-box; */
+    background-repeat: no-repeat;
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #login {
+    height: 400px;
+    width: 300px;
+    background-color: grey;
+    background-color: transparent;
+    border: 1px solid white;
+    border-radius: 5%;
+    box-shadow: 5px 3px 15px rgba(113, 115, 119, 0.5);
+    position: relative;
+  
+    /* Add some moving animation */
+    opacity: 0;
+    transform:translateY(70px);
+    animation: moveup 0.5s linear forwards;
+  }
+  
+  @keyframes moveup {
+    100%{
+        opacity: 1;
+        transform: translateY(0px);
+    }
+  }
+  
+  
+  h2 {
+    margin-top: 16px;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  #fm {
+    margin-top: 25px;
+    margin-left: 30px;
+    height: 25px;
+    padding: 10px;
+    width: 75%;
+    border: none;
+    border: 1px solid white;
+    border-radius: 20px;
+    background-color: transparent;
+  }
+  
+  #login i {
+    position: absolute;
+    right: 60px;
+    /* top: 40px; */
+    color: white;
+    /* background-color: aliceblue; */
+    font-size: 15px;
+  }
+  
+  #i1 {
+    top: 69px;
+  }
+  
+  #i2 {
+    top: 119px;
+  }
+  #option {
+    color: white;
+    margin: 13px;
+    display: flex;
+    /* margin: 10px ; */
+    margin-top: 13px;
+    margin-left: 20px;
+    /* padding: 20px; */
+    /* justify-content: space-around; */
+  }
+  
+  #input {
+    margin-right: 5px;
+  }
+  p {
+    /* margin-left: 10px; */
+    margin-right: 25px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  button {
+    margin-left: 25px;
+    border: none;
+    width: 80%;
+    height: 25px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  
+  button:hover{
+      box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+  }
+  
+  #ctacc,
+  #register {
+    color: white;
+    /* font-size: 20px; */
+  }
+  
+  #op {
+    display: flex;
+    margin-top: 16px;
+    padding-left: 25px;
+  }
+  

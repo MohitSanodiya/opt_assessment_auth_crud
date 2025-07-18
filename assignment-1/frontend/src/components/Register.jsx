@@ -12,9 +12,27 @@ function RegisterForm() {
 
   const password = watch("password");
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Form Data:", data);
-    alert("Registration successful!");
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: data.fullName,
+          mobile: data.mobile,
+          email: data.email,
+          password: data.password,
+          address: data.address
+        })
+      });
+      const result = await response.json();
+      console.log(result);
+      alert("Registration successful!");
+    } catch (error) {
+      console.error("Registration failed:", error);
+      alert("Registration failed. Please try again.");
+    }
   };
 
   return (
@@ -115,7 +133,7 @@ function RegisterForm() {
 
         {/* Submit Button */}
         <div className="form-group">
-          <button type="submit">Register</button>
+          <button className='btn1' type="submit">Register</button>
         </div>
       </form>
     </div>

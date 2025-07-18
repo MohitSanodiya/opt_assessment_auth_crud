@@ -1,0 +1,33 @@
+.form-container{
+    background-color: transparent;
+    padding: 20px ;
+    border-radius: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px;
+    background-color: transparent;
+}
+
+input{
+    background-color: rgb(64, 62, 62);
+    border-radius: 50px;
+    padding: 5px 20px; 
+}
+
+.inp1{
+    background-color: rgb(64, 62, 62);
+    border-radius: 50px;
+    padding: 5px 20px; 
+}

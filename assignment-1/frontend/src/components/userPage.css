@@ -1,0 +1,24 @@
+/* UserPage.css */
+.user-page-container {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .button-group {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  

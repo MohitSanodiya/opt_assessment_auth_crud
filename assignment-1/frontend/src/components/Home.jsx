@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { act, useState } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +13,12 @@ const Home = () => {
     }
 
     console.log("Role Selected:", role);
+
     console.log("Button Clicked:", action);
+
+    //Save to localStorage
+    localStorage.setItem("selectedRole", role.charAt(0).toUpperCase() + role.slice(1));
+
 
     // Redirecting based on role + action
     if (action === 'login') {

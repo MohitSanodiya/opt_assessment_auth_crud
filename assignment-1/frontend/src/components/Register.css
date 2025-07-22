@@ -1,14 +1,14 @@
 .form-container{
     background-color: transparent;
-    padding: 20px ;
     border-radius: 10px;
     border: 1px solid rgb(255, 255, 255);
     box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     gap: 20px;
+    text-align: center;
+    display: grid;
+    place-items: center;
+    padding: 20px 40px;
+    padding-right: 60px;
 }
 
 .form-group{
@@ -24,6 +24,7 @@ input{
     background-color: rgb(64, 62, 62);
     border-radius: 50px;
     padding: 5px 20px; 
+    margin: 8px 0px;
 }
 
 .inp1{
@@ -40,3 +41,18 @@ input{
     border: 1px solid white;
     cursor: pointer;
 }
+
+.txt-ar{
+    background-color: rgb(64, 62, 62);
+    padding: 1px 20px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.error-msg {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+    margin-bottom: 6px;
+  }
+  

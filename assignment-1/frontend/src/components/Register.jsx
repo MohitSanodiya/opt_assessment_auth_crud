@@ -1,23 +1,29 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import './Register.css';
+import React from "react";
+import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import "./Register.css";
 
 function RegisterForm() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     watch,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const password = watch("password");
 
+  // Checking validation of email
+  function isValidEmail(email) {
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return regex.test(email);
+  }
+
   const onSubmit = async (data) => {
-    console.log("Data sending to backend:", data);
-  
+    console.log("Data sending to backend : ", data);
+
     try {
       const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
@@ -27,30 +33,31 @@ function RegisterForm() {
           mobile: data.mobile,
           email: data.email,
           password: data.password,
-          address: data.address
-        })
+          address: data.address,
+        }),
       });
-  
+
       const result = await response.json();
-      console.log("Server response:", result);       // frontend console
-  
+      console.log("Server response:", result); // frontend console
+
       if (response.ok) {
-        console.log("Registration successful!");
+        console.log("Registration successful");
+        alert("Registration Successful");
       } else {
         console.log("Registration failed: " + result.message);
+        alert("Registration Failed");
       }
     } catch (error) {
       console.error("Registration error:", error);
+      alert("Something went wrong. Please ty again.");
       console.error("Something went wrong. Please try again.");
     }
   };
-  
 
   return (
     <div className="form-container">
       <h2>Registration Form</h2>
       <form onSubmit={handleSubmit(onSubmit)}>
-
         {/* Full Name */}
         <div className="form-group">
           <label>Full Name</label>
@@ -58,10 +65,10 @@ function RegisterForm() {
             type="text"
             {...register("fullName", {
               required: "Full name is required",
-              minLength: { value: 3, message: "At least 3 characters" }
+              minLength: { value: 3, message: "At least 3 characters" },
             })}
           />
-          {errors.fullName && <span>{errors.fullName.message}</span>}
+          {errors.fullName && <p className="error-msg">{errors.fullName.message}</p>}
         </div>
 
         {/* Mobile */}
@@ -73,14 +80,13 @@ function RegisterForm() {
               required: "Mobile number is required",
               pattern: {
                 value: /^[6-9]\d{9}$/,
-                message: "Enter valid 10-digit mobile number"
-              }
+                message: "Enter valid 10-digit mobile number",
+              },
             })}
           />
-          {errors.mobile && <span>{errors.mobile.message}</span>}
+          {errors.mobile && <p className="error-msg">{errors.mobile.message}</p>}
         </div>
 
-        {/* Email */}
         <div className="form-group">
           <label>Email ID</label>
           <input
@@ -88,12 +94,13 @@ function RegisterForm() {
             {...register("email", {
               required: "Email is required",
               pattern: {
-                value: /^\S+@\S+$/i,
-                message: "Enter a valid email"
-              }
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Enter a valid email address",
+              },
             })}
           />
-          {errors.email && <span>{errors.email.message}</span>}
+          {/* Error message shown below the input box */}
+          {errors.email && <p className="error-msg">{errors.email.message}</p>}
         </div>
 
         {/* Password */}
@@ -105,46 +112,35 @@ function RegisterForm() {
               required: "Password is required",
               minLength: {
                 value: 6,
-                message: "At least 6 characters required"
-              }
+                message: "At least 6 characters required",
+              },
             })}
           />
-          {errors.password && <span>{errors.password.message}</span>}
-        </div>
-
-        {/* Confirm Password */}
-        <div className="form-group">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            {...register("confirmPassword", {
-              required: "Confirm password is required",
-              validate: (value) =>
-                value === password || "Passwords do not match"
-            })}
-          />
-          {errors.confirmPassword && <span>{errors.confirmPassword.message}</span>}
+          {errors.password && <p className="error-msg">{errors.password.message}</p>}
         </div>
 
         {/* Address */}
         <div className="form-group">
           <label>Address</label>
           <textarea
+            className="txt-ar"
             rows={3}
             {...register("address", {
               required: "Address is required",
               minLength: {
-                value: 10,
-                message: "Minimum 10 characters required"
-              }
+                value: 5,
+                message: "Minimum 5 characters required",
+              },
             })}
           />
-          {errors.address && <span>{errors.address.message}</span>}
+          {errors.address && <p className="error-msg">{errors.address.message}</p>}
         </div>
 
         {/* Submit */}
         <div className="form-group">
-          <button className="btn1" type="submit">Register</button>
+          <button className="btn1" type="submit">
+            Register
+          </button>
         </div>
       </form>
     </div>

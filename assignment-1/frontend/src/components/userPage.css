@@ -1,24 +1,41 @@
-/* UserPage.css */
 .user-page-container {
+    /* height: 100%; */
     padding: 20px;
+    font-family: sans-serif;
+    /* background-color: gray; */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
   .button-group {
-    margin-top: 20px;
+    margin-bottom: 20px;
   }
   
   .btn {
-    padding: 10px 20px;
-    margin: 10px;
-    border: none;
-    background-color: #007bff;
-    color: white;
-    border-radius: 6px;
     cursor: pointer;
+    background-color: black;
+    padding: 5px 30px;
+    margin: 10px;
+    border-radius: 20px;
+    
   }
   
-  .btn:hover {
-    background-color: #0056b3;
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .data-table th,
+  .data-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .selected-row {
+    background-color: #f0f8ff;
   }
   

@@ -1,9 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 
-// ---------------------------
-// Register Controller
-// ---------------------------
+// Register
 const registerUser = async (req, res) => {
   const { fullName, mobile, email, password, address } = req.body;
 
@@ -46,9 +44,7 @@ const registerUser = async (req, res) => {
   }
 };
 
-// ---------------------------
-// Login Controller
-// ---------------------------
+// Login 
 const loginUser = async (req, res) => {
   const { mobile, password } = req.body;
 
